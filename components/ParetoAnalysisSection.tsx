@@ -95,26 +95,115 @@ const ParetoAnalysisSection = () => {
         
         <div className="w-full md:w-1/2">
           <h4 className="text-sm font-medium mb-2">Key Findings</h4>
-          <div className="space-y-4">
+          <div className="space-y-3">
+            {/* Saturday's Optimal Tour - Visual representation */}
             <div className="bg-blue-50 p-3 rounded-md">
-              <h5 className="font-medium text-sm text-blue-800">Saturday's Optimal Tour</h5>
-              <p className="text-sm text-gray-600 mt-1">
-                The Saturday four-venue tour (St. Lawrence Market → Hockey Hall of Fame → Distillery District → CN Tower) represents an optimal balance between travel efficiency and crowd avoidance with only 31 minutes of total travel time.
-              </p>
+              <div className="flex items-start">
+                <div className="flex-shrink-0 bg-blue-100 rounded-full p-2 mr-3">
+                  <svg className="w-5 h-5 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <h5 className="font-medium text-sm text-blue-800">Saturday's Optimal Tour</h5>
+                  <div className="flex items-center mt-2 flex-wrap gap-2">
+                    <div className="flex items-center bg-white px-2 py-1 rounded text-xs">
+                      <span className="w-2 h-2 rounded-full bg-blue-500 mr-1"></span>
+                      <span>4 venues</span>
+                    </div>
+                    <div className="flex items-center bg-white px-2 py-1 rounded text-xs">
+                      <span className="w-2 h-2 rounded-full bg-green-500 mr-1"></span>
+                      <span>31 min travel</span>
+                    </div>
+                    <div className="flex items-center bg-white px-2 py-1 rounded text-xs">
+                      <span className="w-2 h-2 rounded-full bg-yellow-500 mr-1"></span>
+                      <span>Balanced crowds</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center mt-2 text-xs text-gray-600">
+                    <div className="flex-1 h-1 bg-gray-200 rounded-full overflow-hidden">
+                      <div className="h-1 bg-blue-500 rounded-full" style={{ width: '75%' }}></div>
+                    </div>
+                    <span className="ml-2">75% efficiency</span>
+                  </div>
+                </div>
+              </div>
             </div>
             
+            {/* Time-Based Scheduling Importance - Visual */}
             <div className="bg-blue-50 p-3 rounded-md">
-              <h5 className="font-medium text-sm text-blue-800">Time-Based Scheduling Importance</h5>
-              <p className="text-sm text-gray-600 mt-1">
-                The model effectively utilizes venue operating hours, scheduling early-closing venues (St. Lawrence Market - 5:00 PM) first and late-closing venues (CN Tower - 9:00 PM) last to maximize total visitation opportunity.
-              </p>
+              <div className="flex items-start">
+                <div className="flex-shrink-0 bg-blue-100 rounded-full p-2 mr-3">
+                  <svg className="w-5 h-5 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <h5 className="font-medium text-sm text-blue-800">Time-Based Scheduling</h5>
+                  <div className="flex mt-2 items-center">
+                    <div className="flex-1">
+                      <div className="flex justify-between mb-1 text-xs">
+                        <span>Morning</span>
+                        <span>Evening</span>
+                      </div>
+                      <div className="relative h-6 bg-gray-100 rounded-md overflow-hidden">
+                        <div className="absolute left-0 top-0 h-full bg-amber-200 border-r border-gray-300 flex items-center justify-center" style={{ width: '30%' }}>
+                          <span className="text-xs font-medium">Market</span>
+                        </div>
+                        <div className="absolute left-[30%] top-0 h-full bg-blue-100 border-r border-gray-300 flex items-center justify-center" style={{ width: '20%' }}>
+                          <span className="text-xs font-medium">Hall</span>
+                        </div>
+                        <div className="absolute left-[50%] top-0 h-full bg-orange-100 border-r border-gray-300 flex items-center justify-center" style={{ width: '20%' }}>
+                          <span className="text-xs font-medium">District</span>
+                        </div>
+                        <div className="absolute left-[70%] top-0 h-full bg-indigo-100 flex items-center justify-center" style={{ width: '30%' }}>
+                          <span className="text-xs font-medium">CN Tower</span>
+                        </div>
+                      </div>
+                      <div className="flex justify-between mt-1 text-xs text-gray-500">
+                        <span>Early Close</span>
+                        <span>Late Close</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             
+            {/* Pareto Efficiency - Visual */}
             <div className="bg-blue-50 p-3 rounded-md">
-              <h5 className="font-medium text-sm text-blue-800">Pareto Efficiency</h5>
-              <p className="text-sm text-gray-600 mt-1">
-                Pareto-optimal solutions reveal that adding a fifth venue requires accepting at least a 55% increase in travel time, demonstrating clear trade-offs between maximizing venues visited and minimizing travel time.
-              </p>
+              <div className="flex items-start">
+                <div className="flex-shrink-0 bg-blue-100 rounded-full p-2 mr-3">
+                  <svg className="w-5 h-5 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <h5 className="font-medium text-sm text-blue-800">Pareto Trade-off</h5>
+                  <div className="flex items-center justify-between mt-2 mb-1">
+                    <div className="flex items-center text-xs">
+                      <span className="font-semibold mr-1">4</span> venues
+                    </div>
+                    <div className="flex items-center text-xs">
+                      <span className="font-semibold mr-1">5</span> venues
+                    </div>
+                  </div>
+                  <div className="relative">
+                    <div className="flex items-center justify-between">
+                      <div className="w-8 h-8 rounded-full bg-blue-100 border-2 border-blue-500 flex items-center justify-center text-xs font-medium">
+                        31m
+                      </div>
+                      <div className="h-0.5 flex-1 bg-gradient-to-r from-blue-400 to-red-400"></div>
+                      <div className="w-8 h-8 rounded-full bg-red-100 border-2 border-red-500 flex items-center justify-center text-xs font-medium">
+                        48m
+                      </div>
+                    </div>
+                    <div className="absolute w-full text-center text-xs text-red-600 font-semibold mt-1">
+                      +55% travel time
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
