@@ -451,21 +451,5 @@ const SmartTourismInfographic = () => {
               </div>
             </div>
           </div>
-        </div>
-        
-        {/* Imported Components for the Bottom Sections */}
-        <ParetoAnalysisSection />
-        <LimitationsSection />
-        <ConclusionSection />
-        
-        {/* Footer */}
-        <div className="md:col-span-3 mt-6 text-center text-xs text-gray-500">
-          <p>Smart Tourism in Toronto: Data-Driven Travel Experience Optimization</p>
-          <p className="mt-1">Awad, Kathuria, Narciso-Orejola, Rara, Siddiqui - 2025</p>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default SmartTourismInfographic; 
+          
+          {/* Additional Business Recommendations in the second column */}
