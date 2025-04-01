@@ -110,66 +110,72 @@ const SmartTourismInfographic = () => {
     const hourWidth = 60; // width in pixels for each hour
     
     return (
-      <div className="mt-2 relative">
-        {/* Time markers */}
-        <div className="flex border-t border-gray-300">
-          {timeSlots.map((time) => (
-            <div key={time} className="flex-none text-xs text-center" style={{ width: `${hourWidth}px` }}>
-              <div className="h-3 border-l border-gray-300"></div>
-              <div>{time}</div>
-            </div>
-          ))}
-        </div>
-        
-        {/* Venue blocks */}
-        <div className="mt-4 space-y-4">
-          {tourSchedule.map((venue, index) => {
-            const startHour = parseInt(venue.startTime.split(':')[0]);
-            const startMinute = parseInt(venue.startTime.split(':')[1]);
-            const endHour = parseInt(venue.endTime.split(':')[0]);
-            const endMinute = parseInt(venue.endTime.split(':')[1]);
-            
-            const startPosition = (startHour - 9) * hourWidth + (startMinute / 60) * hourWidth;
-            const duration = (endHour - startHour) * hourWidth + ((endMinute - startMinute) / 60) * hourWidth;
-            
-            const isActive = activeVenue === venue.venue;
-            
-            return (
-              <div key={venue.venue} className="relative h-10" 
-                onMouseEnter={() => setActiveVenue(venue.venue)}
-                onMouseLeave={() => setActiveVenue(null)}
-              >
-                <div className="absolute left-0 top-0 h-6 flex items-center">
-                  <div className="w-4 h-4 mr-1 rounded-full" style={{ backgroundColor: venue.color }}></div>
-                  <span className="text-xs font-medium truncate w-28">{venue.venue}</span>
-                </div>
-                <div 
-                  className={`absolute top-0 h-6 rounded-md flex items-center justify-center text-white text-xs transition-all
-                    ${isActive ? 'ring-2 ring-blue-400 shadow-lg' : ''}`} 
-                  style={{ 
-                    left: `${startPosition}px`, 
-                    width: `${duration}px`,
-                    backgroundColor: venue.color,
-                  }}
+      <div className="mt-2 relative overflow-x-auto pb-2">
+        <div className="min-w-max" style={{ minWidth: '1020px' }}>
+          {/* Time markers */}
+          <div className="flex border-t border-gray-300">
+            {['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00'].map((time) => (
+              <div key={time} className="flex-none text-xs text-center" style={{ width: '60px', marginLeft: time === '09:00' ? '140px' : '0' }}>
+                <div className="h-3 border-l border-gray-300"></div>
+                <div>{time}</div>
+              </div>
+            ))}
+          </div>
+          
+          {/* Venue blocks */}
+          <div className="mt-4 space-y-4">
+            {tourSchedule.map((venue, index) => {
+              const startHour = parseInt(venue.startTime.split(':')[0]);
+              const startMinute = parseInt(venue.startTime.split(':')[1]);
+              const endHour = parseInt(venue.endTime.split(':')[0]);
+              const endMinute = parseInt(venue.endTime.split(':')[1]);
+              
+              const startPosition = (startHour - 9) * 60 + (startMinute / 60) * 60;
+              const duration = (endHour - startHour) * 60 + ((endMinute - startMinute) / 60) * 60;
+              
+              const isActive = activeVenue === venue.venue;
+              
+              return (
+                <div key={venue.venue} className="relative h-10" 
+                  onMouseEnter={() => setActiveVenue(venue.venue)}
+                  onMouseLeave={() => setActiveVenue(null)}
                 >
-                  {venue.duration}h
-                </div>
-                
-                {/* Travel time indicator (if not the last venue) */}
-                {index < tourSchedule.length - 1 && (
-                  <div className="absolute flex items-center" 
+                  {/* Venue name with left margin to prevent overlap */}
+                  <div className="absolute left-0 top-0 h-6 flex items-center" style={{ width: '140px', zIndex: 10 }}>
+                    <div className="w-4 h-4 mr-1 rounded-full" style={{ backgroundColor: venue.color }}></div>
+                    <span className="text-xs font-medium truncate">{venue.venue}</span>
+                  </div>
+                  
+                  {/* Timeline block positioned with left margin to avoid overlapping venue name */}
+                  <div 
+                    className={`absolute top-0 h-6 rounded-md flex items-center justify-center text-white text-xs transition-all
+                      ${isActive ? 'ring-2 ring-blue-400 shadow-lg' : ''}`} 
                     style={{ 
-                      left: `${startPosition + duration + 5}px`, 
-                      top: '3px'
+                      left: `${startPosition}px`, 
+                      width: `${duration}px`,
+                      backgroundColor: venue.color,
+                      marginLeft: '140px'
                     }}
                   >
-                    <div className="h-px w-6 bg-gray-400 mr-1"></div>
-                    <span className="text-xs text-gray-500">{venue.travelTime}m</span>
+                    {venue.duration}h
                   </div>
-                )}
-              </div>
-            );
-          })}
+                  
+                  {/* Travel time indicator (if not the last venue) */}
+                  {index < tourSchedule.length - 1 && (
+                    <div className="absolute flex items-center" 
+                      style={{ 
+                        left: `${startPosition + duration + 5 + 140}px`, 
+                        top: '3px'
+                      }}
+                    >
+                      <div className="h-px w-6 bg-gray-400 mr-1"></div>
+                      <span className="text-xs text-gray-500">{venue.travelTime}m</span>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     );
@@ -282,135 +288,171 @@ const SmartTourismInfographic = () => {
               </div>
             </div>
           </div>
-        </div>
-        
-        {/* Middle Column - Analysis & Interpretation */}
-        <div className="flex flex-col gap-6">
-          <div className="bg-white rounded-lg shadow-md p-4">
-            <h3 className="text-lg font-bold text-gray-800 mb-2">Optimal Saturday Tour</h3>
-            
-            {/* Map */}
-            {renderMap()}
-            
-            {/* Timeline */}
-            <div>
-              <h4 className="text-sm font-medium mb-1">Schedule Timeline</h4>
-              {renderTimeline()}
-            </div>
-          </div>
           
-          <div className="bg-white rounded-lg shadow-md p-4">
-            <h3 className="text-lg font-bold text-gray-800 mb-2">Venue Crowd Levels</h3>
-            <ResponsiveContainer width="100%" height={150}>
-              <LineChart
-                data={crowdLevelData}
-                margin={{ top: 5, right: 5, left: -20, bottom: 0 }}
-              >
-                <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
-                <XAxis dataKey="time" tick={{ fontSize: 10 }} />
-                <YAxis domain={[-2, 2]} tick={{ fontSize: 10 }} />
-                <Tooltip 
-                  formatter={(value: any) => [`${value} (${Number(value) < 0 ? 'Quiet' : Number(value) < 1 ? 'Average' : 'Busy'})`]} 
-                  labelFormatter={(label) => `Time: ${label}`}
-                />
-                <Line type="monotone" dataKey="Casa Loma" stroke="#4a6741" strokeWidth={2} dot={{ r: 1 }} />
-                <Line type="monotone" dataKey="Royal Ontario Museum" stroke="#3a8fb7" strokeWidth={2} dot={{ r: 1 }} />
-                <Line type="monotone" dataKey="CN Tower" stroke="#3a5db7" strokeWidth={2} dot={{ r: 1 }} />
-              </LineChart>
-            </ResponsiveContainer>
-            <div className="flex justify-center space-x-4 text-xs">
-              <div className="flex items-center">
-                <div className="w-3 h-3 rounded-full bg-blue-600 mr-1"></div>
-                <span>-2: Very Quiet</span>
-              </div>
-              <div className="flex items-center">
-                <div className="w-3 h-3 rounded-full bg-green-500 mr-1"></div>
-                <span>0: Average</span>
-              </div>
-              <div className="flex items-center">
-                <div className="w-3 h-3 rounded-full bg-red-500 mr-1"></div>
-                <span>2: Very Busy</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        {/* Right Column - Conclusions & Recommendations */}
-        <div className="flex flex-col gap-6">
-          <div className="bg-white rounded-lg shadow-md p-4">
-            <h3 className="text-lg font-bold text-gray-800 mb-2">Key Metrics</h3>
-            <div className="space-y-4">
-              <div className="flex items-center justify-between p-2 bg-blue-50 rounded-md">
-                <div className="font-medium">Total Travel Time:</div>
-                <div className="text-lg font-bold text-blue-700">31 minutes</div>
-              </div>
-              <div className="flex items-center justify-between p-2 bg-green-50 rounded-md">
-                <div className="font-medium">Venues Visited:</div>
-                <div className="text-lg font-bold text-green-700">4</div>
-              </div>
-              <div className="flex items-center justify-between p-2 bg-amber-50 rounded-md">
-                <div className="font-medium">Average Crowd Level:</div>
-                <div className="flex items-center">
-                  {renderCrowdLevel(0.6)}
-                </div>
-              </div>
-            </div>
-          </div>
-          
+          {/* Business Recommendations */}
           <div className="bg-white rounded-lg shadow-md p-4">
             <h3 className="text-lg font-bold text-gray-800 mb-2">Business Recommendations</h3>
-            <div className="space-y-3">
-              <div className="flex items-start">
-                <div className="bg-indigo-100 p-2 rounded-md mr-2">
-                  <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5 text-indigo-600">
+            {/* Group 1: Time-based recommendations */}
+            <div className="bg-blue-50 p-3 rounded-md mb-3">
+              <div className="flex items-start mb-2">
+                <div className="p-2 rounded-md mr-2 bg-blue-100">
+                  <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5 text-blue-600">
                     <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </div>
                 <div>
                   <h4 className="text-sm font-medium">Time-Optimized Ticket Packages</h4>
-                  <p className="text-xs text-gray-600">Bundle tickets with pre-scheduled entry times</p>
+                  <p className="text-xs text-gray-600">Bundle tickets with pre-scheduled entry times to reduce wait times</p>
+                </div>
+              </div>
+              <div className="ml-9 text-xs text-gray-700">
+                • 18% revenue increase from bundled packages<br />
+                • 35% reduction in peak-time congestion
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Optimal Saturday Tour - Now spanning two columns */}
+        <div className="md:col-span-2 flex flex-col gap-6">
+          <div className="bg-white rounded-lg shadow-md p-4">
+            <h3 className="text-lg font-bold text-gray-800 mb-2">Optimal Saturday Tour</h3>
+            
+            <div className="grid grid-cols-1 gap-6">
+              {/* Key Metrics row */}
+              <div className="grid grid-cols-3 gap-4">
+                <div className="p-3 bg-blue-50 rounded-md">
+                  <div className="text-sm font-medium">Total Travel Time:</div>
+                  <div className="text-xl font-bold text-blue-700">31 minutes</div>
+                </div>
+                <div className="p-3 bg-green-50 rounded-md">
+                  <div className="text-sm font-medium">Venues Visited:</div>
+                  <div className="text-xl font-bold text-green-700">4</div>
+                </div>
+                <div className="p-3 bg-amber-50 rounded-md">
+                  <div className="text-sm font-medium">Average Crowd Level:</div>
+                  <div className="flex items-center mt-1">
+                    {renderCrowdLevel(0.6)}
+                  </div>
                 </div>
               </div>
               
-              <div className="flex items-start">
-                <div className="bg-indigo-100 p-2 rounded-md mr-2">
-                  <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5 text-indigo-600">
+              {/* Timeline - Now spans full width */}
+              <div>
+                <h4 className="text-sm font-medium mb-2">Schedule Timeline</h4>
+                <div className="mt-2 relative overflow-x-auto pb-2">
+                  <div className="min-w-max" style={{ minWidth: '1020px' }}>
+                    {/* Time markers */}
+                    <div className="flex border-t border-gray-300">
+                      {['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00'].map((time) => (
+                        <div key={time} className="flex-none text-xs text-center" style={{ width: '60px', marginLeft: time === '09:00' ? '140px' : '0' }}>
+                          <div className="h-3 border-l border-gray-300"></div>
+                          <div>{time}</div>
+                        </div>
+                      ))}
+                    </div>
+                    
+                    {/* Venue blocks */}
+                    <div className="mt-4 space-y-4">
+                      {tourSchedule.map((venue, index) => {
+                        const startHour = parseInt(venue.startTime.split(':')[0]);
+                        const startMinute = parseInt(venue.startTime.split(':')[1]);
+                        const endHour = parseInt(venue.endTime.split(':')[0]);
+                        const endMinute = parseInt(venue.endTime.split(':')[1]);
+                        
+                        const startPosition = (startHour - 9) * 60 + (startMinute / 60) * 60;
+                        const duration = (endHour - startHour) * 60 + ((endMinute - startMinute) / 60) * 60;
+                        
+                        const isActive = activeVenue === venue.venue;
+                        
+                        return (
+                          <div key={venue.venue} className="relative h-10" 
+                            onMouseEnter={() => setActiveVenue(venue.venue)}
+                            onMouseLeave={() => setActiveVenue(null)}
+                          >
+                            {/* Venue name with left margin to prevent overlap */}
+                            <div className="absolute left-0 top-0 h-6 flex items-center" style={{ width: '140px', zIndex: 10 }}>
+                              <div className="w-4 h-4 mr-1 rounded-full" style={{ backgroundColor: venue.color }}></div>
+                              <span className="text-xs font-medium truncate">{venue.venue}</span>
+                            </div>
+                            
+                            {/* Timeline block positioned with left margin to avoid overlapping venue name */}
+                            <div 
+                              className={`absolute top-0 h-6 rounded-md flex items-center justify-center text-white text-xs transition-all
+                                ${isActive ? 'ring-2 ring-blue-400 shadow-lg' : ''}`} 
+                              style={{ 
+                                left: `${startPosition}px`, 
+                                width: `${duration}px`,
+                                backgroundColor: venue.color,
+                                marginLeft: '140px'
+                              }}
+                            >
+                              {venue.duration}h
+                            </div>
+                            
+                            {/* Travel time indicator (if not the last venue) */}
+                            {index < tourSchedule.length - 1 && (
+                              <div className="absolute flex items-center" 
+                                style={{ 
+                                  left: `${startPosition + duration + 5 + 140}px`, 
+                                  top: '3px'
+                                }}
+                              >
+                                <div className="h-px w-6 bg-gray-400 mr-1"></div>
+                                <span className="text-xs text-gray-500">{venue.travelTime}m</span>
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Additional Business Recommendations in the second column */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Group 2: Price-based recommendations */}
+            <div className="bg-green-50 p-3 rounded-md">
+              <div className="flex items-start mb-2">
+                <div className="p-2 rounded-md mr-2 bg-green-100">
+                  <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5 text-green-600">
                     <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </div>
                 <div>
-                  <h4 className="text-sm font-medium">Dynamic Pricing</h4>
-                  <p className="text-xs text-gray-600">Offer discounts during less crowded hours</p>
+                  <h4 className="text-sm font-medium">Dynamic Pricing Strategy</h4>
+                  <p className="text-xs text-gray-600">Offer discounts during less crowded hours to incentivize off-peak visits</p>
                 </div>
               </div>
-              
-              <div className="flex items-start">
-                <div className="bg-indigo-100 p-2 rounded-md mr-2">
-                  <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5 text-indigo-600">
+              <div className="ml-9 text-xs text-gray-700">
+                • 22% increase in off-peak attendance<br />
+                • More balanced daily visitor distribution<br />
+                • Consistent revenue throughout operating hours
+              </div>
+            </div>
+            
+            {/* Group 3: Technology recommendations */}
+            <div className="bg-purple-50 p-3 rounded-md">
+              <div className="flex items-start mb-2">
+                <div className="p-2 rounded-md mr-2 bg-purple-100">
+                  <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5 text-purple-600">
                     <path d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                   </svg>
                 </div>
                 <div>
                   <h4 className="text-sm font-medium">Integrated Mobile App</h4>
-                  <p className="text-xs text-gray-600">Real-time scheduling with push notifications</p>
+                  <p className="text-xs text-gray-600">Real-time scheduling with push notifications for optimal touring</p>
                 </div>
               </div>
+              <div className="ml-9 text-xs text-gray-700">
+                • Real-time crowd level updates<br />
+                • Personalized itinerary suggestions<br />
+                • Traffic-aware routing between venues
+              </div>
             </div>
-          </div>
-
-          <div className="bg-white rounded-lg shadow-md p-4">
-            <h3 className="text-lg font-bold text-gray-800 mb-2">Business Impact</h3>
-            <ResponsiveContainer width="100%" height={160}>
-              <BarChart data={businessImpactData} margin={{ top: 10, right: 10, left: -25, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} opacity={0.3} />
-                <XAxis dataKey="name" tick={{ fontSize: 10 }} />
-                <YAxis tick={{ fontSize: 10 }} />
-                <Tooltip />
-                <Bar dataKey="traditional" name="Traditional" fill="#9ca3af" />
-                <Bar dataKey="optimized" name="Optimized" fill="#3b82f6" />
-              </BarChart>
-            </ResponsiveContainer>
-            <div className="text-xs text-center mt-1 text-gray-500">Relative Improvement (%)</div>
           </div>
         </div>
         
