@@ -380,12 +380,12 @@ const SmartTourismInfographic = () => {
               {/* Timeline - Now spans full width */}
               <div>
                 <h4 className="text-sm font-medium mb-2">Schedule Timeline</h4>
-                <div className="mt-2 relative overflow-x-auto pb-2">
-                  <div className="min-w-max" style={{ minWidth: '1020px' }}>
+                <div className="mt-2 relative pb-2">
+                  <div className="w-full">
                     {/* Time markers */}
                     <div className="flex border-t border-gray-300">
                       {['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00'].map((time) => (
-                        <div key={time} className="flex-none text-xs text-center" style={{ width: '60px', marginLeft: time === '09:00' ? '140px' : '0' }}>
+                        <div key={time} className="flex-1 text-xs text-center">
                           <div className="h-3 border-l border-gray-300"></div>
                           <div>{time}</div>
                         </div>
@@ -400,8 +400,8 @@ const SmartTourismInfographic = () => {
                         const endHour = parseInt(venue.endTime.split(':')[0]);
                         const endMinute = parseInt(venue.endTime.split(':')[1]);
                         
-                        const startPosition = (startHour - 9) * 60 + (startMinute / 60) * 60;
-                        const duration = (endHour - startHour) * 60 + ((endMinute - startMinute) / 60) * 60;
+                        const startPercent = ((startHour - 9) * 60 + startMinute) / (12 * 60) * 100;
+                        const durationPercent = ((endHour - startHour) * 60 + (endMinute - startMinute)) / (12 * 60) * 100;
                         
                         const isActive = activeVenue === venue.venue;
                         
@@ -411,20 +411,19 @@ const SmartTourismInfographic = () => {
                             onMouseLeave={() => setActiveVenue(null)}
                           >
                             {/* Venue name with left margin to prevent overlap */}
-                            <div className="absolute left-0 top-0 h-6 flex items-center" style={{ width: '140px', zIndex: 10 }}>
+                            <div className="absolute left-0 top-0 h-6 flex items-center z-10" style={{ width: '10%' }}>
                               <div className="w-4 h-4 mr-1 rounded-full" style={{ backgroundColor: venue.color }}></div>
                               <span className="text-xs font-medium truncate">{venue.venue}</span>
                             </div>
                             
-                            {/* Timeline block positioned with left margin to avoid overlapping venue name */}
+                            {/* Timeline block positioned with percentage-based width and left */}
                             <div 
                               className={`absolute top-0 h-6 rounded-md flex items-center justify-center text-white text-xs transition-all
                                 ${isActive ? 'ring-2 ring-blue-400 shadow-lg' : ''}`} 
                               style={{ 
-                                left: `${startPosition}px`, 
-                                width: `${duration}px`,
-                                backgroundColor: venue.color,
-                                marginLeft: '140px'
+                                left: `${10 + startPercent * 0.9}%`, 
+                                width: `${durationPercent * 0.9}%`,
+                                backgroundColor: venue.color
                               }}
                             >
                               {venue.duration}h
@@ -434,7 +433,7 @@ const SmartTourismInfographic = () => {
                             {index < tourSchedule.length - 1 && (
                               <div className="absolute flex items-center" 
                                 style={{ 
-                                  left: `${startPosition + duration + 5 + 140}px`, 
+                                  left: `${10 + (startPercent + durationPercent) * 0.9 + 1}%`, 
                                   top: '3px'
                                 }}
                               >
