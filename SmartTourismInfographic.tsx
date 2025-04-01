@@ -408,13 +408,13 @@ const SmartTourismInfographic = () => {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="text-sm font-medium">Time-Optimized Ticket Packages</h4>
-                  <p className="text-xs text-gray-600">Bundle tickets with pre-scheduled entry times to reduce wait times</p>
+                  <h4 className="text-sm font-medium">Time-Optimized Packages</h4>
+                  <p className="text-xs text-gray-600">Pre-scheduled entry bundles</p>
                 </div>
               </div>
               <div className="ml-9 text-xs text-gray-700">
-                • 18% revenue increase from bundled packages<br />
-                • 35% reduction in peak-time congestion
+                • Increased revenue<br />
+                • Less congestion
               </div>
             </div>
 
@@ -427,14 +427,14 @@ const SmartTourismInfographic = () => {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="text-sm font-medium">Dynamic Pricing Strategy</h4>
-                  <p className="text-xs text-gray-600">Offer discounts during less crowded hours to incentivize off-peak visits</p>
+                  <h4 className="text-sm font-medium">Dynamic Pricing</h4>
+                  <p className="text-xs text-gray-600">Off-peak discounts</p>
                 </div>
               </div>
               <div className="ml-9 text-xs text-gray-700">
-                • 22% increase in off-peak attendance<br />
-                • More balanced daily visitor distribution<br />
-                • Consistent revenue throughout operating hours
+                • More off-peak visits<br />
+                • Balanced visitor flow<br />
+                • Consistent revenue
               </div>
             </div>
             
@@ -447,14 +447,14 @@ const SmartTourismInfographic = () => {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="text-sm font-medium">Integrated Mobile App</h4>
-                  <p className="text-xs text-gray-600">Real-time scheduling with push notifications for optimal touring</p>
+                  <h4 className="text-sm font-medium">Mobile App</h4>
+                  <p className="text-xs text-gray-600">Real-time scheduling</p>
                 </div>
               </div>
               <div className="ml-9 text-xs text-gray-700">
-                • Real-time crowd level updates<br />
-                • Personalized itinerary suggestions<br />
-                • Traffic-aware routing between venues
+                • Live crowd updates<br />
+                • Custom itineraries<br />
+                • Smart routing
               </div>
             </div>
           </div>
