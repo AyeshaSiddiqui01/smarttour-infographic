@@ -288,69 +288,6 @@ const SmartTourismInfographic = () => {
               </div>
             </div>
           </div>
-          
-          {/* Business Recommendations */}
-          <div className="bg-white rounded-lg shadow-md p-4">
-            <h3 className="text-lg font-bold text-gray-800 mb-2">Business Recommendations</h3>
-            {/* Group 1: Time-based recommendations */}
-            <div className="bg-blue-50 p-3 rounded-md mb-3">
-              <div className="flex items-start mb-2">
-                <div className="p-2 rounded-md mr-2 bg-blue-100">
-                  <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5 text-blue-600">
-                    <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="text-sm font-medium">Time-Optimized Ticket Packages</h4>
-                  <p className="text-xs text-gray-600">Bundle tickets with pre-scheduled entry times to reduce wait times</p>
-                </div>
-              </div>
-              <div className="ml-9 text-xs text-gray-700">
-                • 18% revenue increase from bundled packages<br />
-                • 35% reduction in peak-time congestion
-              </div>
-            </div>
-
-            {/* Group 2: Price-based recommendations */}
-            <div className="bg-green-50 p-3 rounded-md mb-3">
-              <div className="flex items-start mb-2">
-                <div className="p-2 rounded-md mr-2 bg-green-100">
-                  <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5 text-green-600">
-                    <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="text-sm font-medium">Dynamic Pricing Strategy</h4>
-                  <p className="text-xs text-gray-600">Offer discounts during less crowded hours to incentivize off-peak visits</p>
-                </div>
-              </div>
-              <div className="ml-9 text-xs text-gray-700">
-                • 22% increase in off-peak attendance<br />
-                • More balanced daily visitor distribution<br />
-                • Consistent revenue throughout operating hours
-              </div>
-            </div>
-            
-            {/* Group 3: Technology recommendations */}
-            <div className="bg-purple-50 p-3 rounded-md">
-              <div className="flex items-start mb-2">
-                <div className="p-2 rounded-md mr-2 bg-purple-100">
-                  <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5 text-purple-600">
-                    <path d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="text-sm font-medium">Integrated Mobile App</h4>
-                  <p className="text-xs text-gray-600">Real-time scheduling with push notifications for optimal touring</p>
-                </div>
-              </div>
-              <div className="ml-9 text-xs text-gray-700">
-                • Real-time crowd level updates<br />
-                • Personalized itinerary suggestions<br />
-                • Traffic-aware routing between venues
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Optimal Saturday Tour - Now spanning two columns */}
@@ -452,10 +389,79 @@ const SmartTourismInfographic = () => {
           </div>
         </div>
         
-        {/* Imported Components for the Bottom Sections */}
+        {/* Pareto Analysis Section */}
         <ParetoAnalysisSection />
-        <LimitationsSection />
+        
+        {/* Conclusion Section */}
         <ConclusionSection />
+        
+        {/* Business Recommendations - Now made horizontal and moved here */}
+        <div className="md:col-span-3 bg-white rounded-lg shadow-md p-4 mt-6">
+          <h3 className="text-lg font-bold text-gray-800 mb-3">Business Recommendations</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Group 1: Time-based recommendations */}
+            <div className="bg-blue-50 p-3 rounded-md">
+              <div className="flex items-start mb-2">
+                <div className="p-2 rounded-md mr-2 bg-blue-100">
+                  <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5 text-blue-600">
+                    <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="text-sm font-medium">Time-Optimized Ticket Packages</h4>
+                  <p className="text-xs text-gray-600">Bundle tickets with pre-scheduled entry times to reduce wait times</p>
+                </div>
+              </div>
+              <div className="ml-9 text-xs text-gray-700">
+                • 18% revenue increase from bundled packages<br />
+                • 35% reduction in peak-time congestion
+              </div>
+            </div>
+
+            {/* Group 2: Price-based recommendations */}
+            <div className="bg-green-50 p-3 rounded-md">
+              <div className="flex items-start mb-2">
+                <div className="p-2 rounded-md mr-2 bg-green-100">
+                  <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5 text-green-600">
+                    <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="text-sm font-medium">Dynamic Pricing Strategy</h4>
+                  <p className="text-xs text-gray-600">Offer discounts during less crowded hours to incentivize off-peak visits</p>
+                </div>
+              </div>
+              <div className="ml-9 text-xs text-gray-700">
+                • 22% increase in off-peak attendance<br />
+                • More balanced daily visitor distribution<br />
+                • Consistent revenue throughout operating hours
+              </div>
+            </div>
+            
+            {/* Group 3: Technology recommendations */}
+            <div className="bg-purple-50 p-3 rounded-md">
+              <div className="flex items-start mb-2">
+                <div className="p-2 rounded-md mr-2 bg-purple-100">
+                  <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5 text-purple-600">
+                    <path d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="text-sm font-medium">Integrated Mobile App</h4>
+                  <p className="text-xs text-gray-600">Real-time scheduling with push notifications for optimal touring</p>
+                </div>
+              </div>
+              <div className="ml-9 text-xs text-gray-700">
+                • Real-time crowd level updates<br />
+                • Personalized itinerary suggestions<br />
+                • Traffic-aware routing between venues
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Limitations Section moved to end */}
+        <LimitationsSection />
         
         {/* Footer */}
         <div className="md:col-span-3 mt-6 text-center text-xs text-gray-500">
