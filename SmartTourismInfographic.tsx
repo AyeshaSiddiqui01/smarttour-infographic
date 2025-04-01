@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic';
 const LimitationsSection = dynamic(() => import('./components/LimitationsSection'), { ssr: false });
 const ParetoAnalysisSection = dynamic(() => import('./components/ParetoAnalysisSection'), { ssr: false });
 const ConclusionSection = dynamic(() => import('./components/ConclusionSection'), { ssr: false });
+const VisualProblemStatement = dynamic(() => import('./components/VisualProblemStatement'), { ssr: false });
 
 const SmartTourismInfographic = () => {
   // State to track which venue is being highlighted
@@ -225,43 +226,8 @@ const SmartTourismInfographic = () => {
       
       <div className="px-4 md:px-8 py-6 grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Problem Statement */}
-        <div className="md:col-span-3 bg-white rounded-lg shadow-md p-4">
-          <h3 className="text-lg font-bold text-gray-800 mb-2">Problem Statement</h3>
-          <div className="flex flex-col md:flex-row items-center">
-            <div className="text-center md:text-left md:w-2/3 p-4">
-              <p className="text-gray-700 mb-4">
-                Toronto's tourism industry faces significant challenges with inefficient crowd and traffic management. Over <span className="font-bold text-red-600">42%</span> of potential visitors avoid attractions due to concerns about crowds.
-              </p>
-              <p className="text-gray-700">
-                Real-time data integration from BestTime.app for crowd monitoring and TomTom's Routing API for traffic management presents a solution to optimize visitor experiences.
-              </p>
-            </div>
-            <div className="w-full md:w-1/3 flex justify-center">
-              <div className="relative">
-                <div className="bg-red-100 rounded-lg p-3 mb-2">
-                  <div className="flex flex-wrap justify-center gap-1">
-                    {[...Array(20)].map((_, i) => (
-                      <div key={i} className="w-3 h-3 rounded-full bg-gray-500"></div>
-                    ))}
-                  </div>
-                  <div className="text-center text-xs mt-1 text-red-600 font-medium">Traditional Tourism</div>
-                </div>
-                <div className="bg-green-100 rounded-lg p-3">
-                  <div className="flex flex-wrap justify-center gap-1">
-                    {[...Array(20)].map((_, i) => (
-                      <div key={i} className={`w-3 h-3 rounded-full ${i < 8 ? 'bg-gray-500' : 'bg-gray-200'}`}></div>
-                    ))}
-                  </div>
-                  <div className="text-center text-xs mt-1 text-green-600 font-medium">Smart Tourism</div>
-                </div>
-                <div className="absolute top-1/2 -right-2 transform -translate-y-1/2 h-12 w-12">
-                  <svg viewBox="0 0 24 24" fill="none" className="w-full h-full text-indigo-600">
-                    <path d="M13 7l5 5-5 5M7 7l5 5-5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="md:col-span-3">
+          <VisualProblemStatement />
         </div>
       
         {/* Left Column - Data & Methodology */}
