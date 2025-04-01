@@ -1,50 +1,73 @@
-# Smart Tourism in Toronto Infographic
+# Smart Tourism Infographic
 
-An interactive data visualization showing how data-driven approaches can optimize tourist experiences in Toronto.
+A data-driven visualization for optimizing tourism experiences in Toronto.
+
+## Live Demo
+
+Visit the live demo at: [https://fortran01.github.io/smarttour-infographic](https://fortran01.github.io/smarttour-infographic)
 
 ## Features
 
-- Interactive charts and visualizations using Recharts
+- Interactive timeline visualization
+- Crowd level analysis
+- Optimized travel routes
 - Multi-objective optimization analysis
-- Responsive design using Tailwind CSS
+- Business recommendations
+
+## Technology Stack
+
+- React
+- Next.js
+- TypeScript
+- Tailwind CSS
+- Recharts for data visualization
 
 ## Getting Started
 
-### Prerequisites
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/fortran01/smarttour-infographic.git
+   cd smarttour-infographic
+   ```
 
-- Node.js (v14 or higher)
-- npm or yarn
-
-### Installation
-
-1. Clone the repository
 2. Install dependencies:
-
-```bash
-npm install
-# or
-yarn install
-```
+   ```bash
+   npm install
+   ```
 
 3. Run the development server:
+   ```bash
+   npm run dev
+   ```
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the infographic.
+## Deployment to GitHub Pages
+
+This project is configured to automatically deploy to GitHub Pages using GitHub Actions.
+
+### Initial Setup
+
+1. Push any updates to GitHub:
+   ```bash
+   git add .
+   git commit -m "Setup GitHub Pages deployment"
+   git push origin main
+   ```
+
+2. Enable GitHub Pages in your repository settings:
+   - Go to repository Settings > Pages
+   - Set "Source" to "GitHub Actions"
+
+The site will be deployed automatically whenever you push to the main branch.
 
 ## Project Structure
 
-- `pages/` - Next.js pages
-- `components/` - Reusable React components for sections of the infographic
-- `styles/` - Global CSS styles
-- `SmartTourismInfographic.tsx` - Main infographic component
+- `/components` - Reusable UI components
+- `/pages` - Next.js pages
+- `/public` - Static assets
+- `/styles` - CSS and styling
 
-## Built With
+## Authors
 
-- [Next.js](https://nextjs.org/) - React framework
-- [Recharts](https://recharts.org/) - Charting library
-- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework 
+Awad, Kathuria, Narciso-Orejola, Rara, Siddiqui - 2025 

@@ -2,6 +2,11 @@
   "name": "smart-tourism-infographic",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://fortran01.github.io/smarttour-infographic",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fortran01/smarttour-infographic.git"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
