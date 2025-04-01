@@ -1,18 +1,17 @@
 # Smart Tourism Infographic
 
-A data-driven visualization for optimizing tourism experiences in Toronto.
+A data-driven visualization for optimizing tourism experiences in Toronto through crowd management, route optimization, and multi-objective analysis.
 
 ## Live Demo
 
 Visit the live demo at: [https://fortran01.github.io/smarttour-infographic](https://fortran01.github.io/smarttour-infographic)
 
-## Features
+## Project Overview
 
-- Interactive timeline visualization
-- Crowd level analysis
-- Optimized travel routes
-- Multi-objective optimization analysis
-- Business recommendations
+This project presents an interactive infographic that uses real-time data to help tourists optimize their experience in Toronto by:
+- Analyzing crowd levels at popular attractions throughout the day
+- Calculating optimized travel routes between venues
+- Applying multi-objective optimization to balance visitation time, crowd levels, and travel efficiency
 
 ## Technology Stack
 
