@@ -4,8 +4,7 @@ import { ScatterChart, Scatter, XAxis, YAxis, ZAxis, CartesianGrid, Tooltip, Res
 // Pareto data for 3D visualization
 const paretoData = [
   { travelTime: 31, crowdLevel: 0.6, venues: 4, isOptimal: true },
-  { travelTime: 25, crowdLevel: 0.28, venues: 4, isOptimal: true },
-  { travelTime: 48, crowdLevel: 0.1, venues: 5, isOptimal: true },
+  { travelTime: 48, crowdLevel: 0.1, venues: 5, isOptimal: true, noStar: true },
   { travelTime: 52, crowdLevel: 0.4, venues: 3, isOptimal: false },
   { travelTime: 37, crowdLevel: 0.9, venues: 3, isOptimal: false },
   { travelTime: 29, crowdLevel: 0.8, venues: 3, isOptimal: false },
@@ -62,10 +61,15 @@ const ParetoAnalysisSection = () => {
                 fill="#9ca3af" 
               />
               <Scatter 
-                name="Pareto-Optimal Solutions" 
-                data={paretoData.filter(d => d.isOptimal)} 
+                name="Pareto-Optimal Solutions with Star" 
+                data={paretoData.filter(d => d.isOptimal && !d.noStar)} 
                 fill="#3b82f6" 
                 shape="star"
+              />
+              <Scatter 
+                name="Pareto-Optimal Solutions without Star" 
+                data={paretoData.filter(d => d.isOptimal && d.noStar)} 
+                fill="#9ca3af" 
               />
             </ScatterChart>
           </ResponsiveContainer>
