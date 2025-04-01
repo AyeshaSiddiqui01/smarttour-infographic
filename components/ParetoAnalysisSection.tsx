@@ -188,7 +188,7 @@ const ParetoAnalysisSection = () => {
                       <span className="font-semibold mr-1">5</span> venues
                     </div>
                   </div>
-                  <div className="relative">
+                  <div className="relative pb-8">
                     <div className="flex items-center justify-between">
                       <div className="w-8 h-8 rounded-full bg-blue-100 border-2 border-blue-500 flex items-center justify-center text-xs font-medium">
                         31m
