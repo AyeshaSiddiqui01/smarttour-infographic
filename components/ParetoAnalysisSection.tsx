@@ -20,71 +20,75 @@ const ParetoAnalysisSection = () => {
       <div className="flex flex-col md:flex-row items-start gap-4">
         <div className="w-full md:w-1/2">
           <h4 className="text-sm font-medium mb-2">Multi-Objective Trade-offs</h4>
-          <ResponsiveContainer width="100%" height={220}>
-            <ScatterChart
-              margin={{ top: 10, right: 10, left: 0, bottom: 10 }}
-            >
-              <CartesianGrid opacity={0.3} />
-              <XAxis 
-                type="number" 
-                dataKey="travelTime" 
-                name="Travel Time" 
-                unit=" min" 
-                domain={[20, 65]} 
-                label={{ value: 'Travel Time (min)', position: 'bottom', offset: 0 }}
-              />
-              <YAxis 
-                type="number" 
-                dataKey="crowdLevel" 
-                name="Crowd Level" 
-                domain={[0, 1.0]} 
-                label={{ value: 'Crowd Level', angle: -90, position: 'left' }}
-              />
-              <ZAxis 
-                type="number" 
-                dataKey="venues" 
-                name="Venues" 
-                range={[60, 300]} 
-              />
-              <Tooltip 
-                cursor={{ strokeDasharray: '3 3' }}
-                formatter={(value: any, name: string) => {
-                  return [
-                    name === "Crowd Level" ? `${value.toFixed(2)} (${Number(value) < 0.3 ? 'Low' : Number(value) < 0.7 ? 'Medium' : 'High'})` : value,
-                    name
-                  ];
-                }}
-              />
-              <Scatter 
-                name="Non-Optimal Solutions" 
-                data={paretoData.filter(d => !d.isOptimal)} 
-                fill="#9ca3af" 
-              />
-              <Scatter 
-                name="Pareto-Optimal Solutions with Star" 
-                data={paretoData.filter(d => d.isOptimal && !d.noStar)} 
-                fill="#3b82f6" 
-                shape="star"
-              />
-              <Scatter 
-                name="Pareto-Optimal Solutions without Star" 
-                data={paretoData.filter(d => d.isOptimal && d.noStar)} 
-                fill="#9ca3af" 
-              />
-            </ScatterChart>
-          </ResponsiveContainer>
-          <div className="flex justify-center space-x-6 text-xs mt-2">
-            <div className="flex items-center">
-              <div className="w-3 h-3 rounded-full bg-blue-500 mr-1"></div>
-              <span>Pareto-Optimal</span>
+          <div className="relative pl-4">
+            <div className="absolute -left-1 top-1/2 transform -rotate-90 -translate-y-1/2 text-xs font-bold text-gray-700 whitespace-nowrap">
+              Crowd Level
             </div>
-            <div className="flex items-center">
-              <div className="w-3 h-3 rounded-full bg-gray-400 mr-1"></div>
-              <span>Other Solutions</span>
-            </div>
-            <div className="flex items-center">
-              <div className="w-3 h-3 rounded-full opacity-25 border border-gray-400 mr-1"></div>
-              <span>Circle Size = # Venues</span>
+            <ResponsiveContainer width="100%" height={220}>
+              <ScatterChart
+                margin={{ top: 20, right: 20, left: 30, bottom: 30 }}
+              >
+                <CartesianGrid opacity={0.3} />
+                <XAxis 
+                  type="number" 
+                  dataKey="travelTime" 
+                  name="Travel Time" 
+                  unit=" min" 
+                  domain={[20, 65]} 
+                  label={{ value: 'Travel Time (min)', position: 'insideBottom', dy: 10 }}
+                />
+                <YAxis 
+                  type="number" 
+                  dataKey="crowdLevel" 
+                  name="Crowd Level" 
+                  domain={[0, 1.0]} 
+                />
+                <ZAxis 
+                  type="number" 
+                  dataKey="venues" 
+                  name="Venues" 
+                  range={[60, 300]} 
+                />
+                <Tooltip 
+                  cursor={{ strokeDasharray: '3 3' }}
+                  formatter={(value: any, name: string) => {
+                    return [
+                      name === "Crowd Level" ? `${value.toFixed(2)} (${Number(value) < 0.3 ? 'Low' : Number(value) < 0.7 ? 'Medium' : 'High'})` : value,
+                      name
+                    ];
+                  }}
+                />
+                <Scatter 
+                  name="Non-Optimal Solutions" 
+                  data={paretoData.filter(d => !d.isOptimal)} 
+                  fill="#9ca3af" 
+                />
+                <Scatter 
+                  name="Pareto-Optimal Solutions with Star" 
+                  data={paretoData.filter(d => d.isOptimal && !d.noStar)} 
+                  fill="#3b82f6" 
+                  shape="star"
+                />
+                <Scatter 
+                  name="Pareto-Optimal Solutions without Star" 
+                  data={paretoData.filter(d => d.isOptimal && d.noStar)} 
+                  fill="#9ca3af" 
+                />
+              </ScatterChart>
+            </ResponsiveContainer>
+            <div className="flex justify-center space-x-6 text-xs mt-2">
+              <div className="flex items-center">
+                <div className="w-3 h-3 rounded-full bg-blue-500 mr-1"></div>
+                <span>Pareto-Optimal</span>
+              </div>
+              <div className="flex items-center">
+                <div className="w-3 h-3 rounded-full bg-gray-400 mr-1"></div>
+                <span>Other Solutions</span>
+              </div>
+              <div className="flex items-center">
+                <div className="w-3 h-3 rounded-full opacity-25 border border-gray-400 mr-1"></div>
+                <span>Circle Size = # Venues</span>
+              </div>
             </div>
           </div>
         </div>
