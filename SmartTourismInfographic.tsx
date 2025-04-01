@@ -449,8 +449,8 @@ const SmartTourismInfographic = () => {
         </div>
         
         {/* Imported Components for the Bottom Sections */}
-        <LimitationsSection />
         <ParetoAnalysisSection />
+        <LimitationsSection />
         <ConclusionSection />
         
         {/* Footer */}
